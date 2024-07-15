@@ -23,43 +23,50 @@ public class BaseClass {
 	
 	@BeforeTest
 	public void loadConfig() {
-		try {
-			prop=new Properties();
-			System.out.println("Super Constructor Invoked");
-			FileInputStream ip= new FileInputStream(
-					System.getProperty("user.dir")+"\\Configuration\\config.properties");
-			prop.load(ip);
-			System.out.println("driver:"+driver);
-			
-		} 
-		
-		catch(FileNotFoundException e) {
-			e.printStackTrace();
-			
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
+		 try {
+	            prop = new Properties();
+	            System.out.println("Super Constructor Invoked");
+	            FileInputStream ip = new FileInputStream(
+	                    System.getProperty("user.dir") + "\\Configuration\\Config.properties");
+	            prop.load(ip);
+	            System.out.println("Config file loaded successfully.");
+	        } catch (FileNotFoundException e) {
+	            e.printStackTrace();
+	            throw new RuntimeException("Config file not found: " + e.getMessage());
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            throw new RuntimeException("Failed to load config file: " + e.getMessage());
+	        }
 	}
 	
 	public static void launchApp() {
-			WebDriverManager.chromedriver().setup();
-			String browserName= prop.getProperty("browser");
-			if(browserName.contains("chrome")) {
-				driver = new ChromeDriver();
-			}
-			else if (browserName.contains("FireFox")) {
-				driver = new FirefoxDriver();
-			}
-			else if (browserName.contains("IE")) {
-				driver= new InternetExplorerDriver();
-			}
+		
 			
-			Action action = new Action();
-			action.implicitWait(driver, 10);
-			action.pageLoadTimeOut(driver, 20);
-			driver.get(prop.getProperty("url"));
-			
-	}
+		 try {
+	            WebDriverManager.chromedriver().setup();
+	            String browserName = prop.getProperty("browser");
+	            if (browserName.equalsIgnoreCase("chrome")) {
+	                driver = new ChromeDriver();
+	            } else if (browserName.equalsIgnoreCase("firefox")) {
+	                driver = new FirefoxDriver();
+	            } else if (browserName.equalsIgnoreCase("ie")) {
+	                driver = new InternetExplorerDriver();
+	            } else {
+	                throw new RuntimeException("Unsupported browser: " + browserName);
+	            }
+
+	            System.out.println("Browser launched: " + browserName);
+
+	            Action.implicitWait(driver, 10);
+	            Action.pageLoadTimeOut(driver, 10);
+	            driver.get(prop.getProperty("url"));
+	            System.out.println("Navigated to URL: " + prop.getProperty("url"));
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            throw new RuntimeException("Failed to launch application: " + e.getMessage());
+	        }
+	    }
+
 	
 
 }

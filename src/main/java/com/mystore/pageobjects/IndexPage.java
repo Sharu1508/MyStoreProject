@@ -11,8 +11,6 @@ import com.mystore.base.BaseClass;
 
 public class IndexPage extends BaseClass {
 	
-	Action action = new Action();
-	
 	@FindBy(xpath="//a[@class='login']")
 	WebElement signInBtn;
 	
@@ -33,13 +31,13 @@ public class IndexPage extends BaseClass {
 	public LoginPage clickOnSignIn()
 	{
 		
-		action.click(driver, signInBtn);
+		Action.click(driver, signInBtn);
 		return new LoginPage();
 	}
 	
-	public void ValidateLogo() {
+	public boolean ValidateLogo() {
 		
-		action.isDisplayed(driver, myStoreLogo);
+		return Action.isDisplayed(driver, myStoreLogo);
 		
 	}
 	
@@ -49,8 +47,8 @@ public class IndexPage extends BaseClass {
 	}
 	
 	public SearchResultPage searchProduct(String productName) throws Throwable {
-		action.type(searchProductBox, productName);
-		action.click(driver, searchButton);
+		Action.type(searchProductBox, productName);
+		Action.click(driver, searchButton);
 		return new SearchResultPage();
 	}
 	
