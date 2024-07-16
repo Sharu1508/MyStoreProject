@@ -14,7 +14,6 @@ import com.mystore.base.BaseClass;
  * Created by Sharu on 8th Jul2024
  */
 public class ShippingPage extends BaseClass{
-	Action action = new Action();
 
 		@FindBy(id="cgv")
 		WebElement terms;
@@ -22,18 +21,17 @@ public class ShippingPage extends BaseClass{
 		@FindBy(xpath="//button/span[contains(text(),'Proceed to checkout')]")
 		WebElement proceedToCheckOutBtn;
 		
-		
 		public ShippingPage() {
 			
 			PageFactory.initElements(driver, this);
 		}
 		
 		public void checkTheTerms() {
-			action.click(driver, terms);
+			Action.click(driver, terms);
 		}
 		
 		public PaymentPage clickOnProceedToCheckout() {
-			action.click(driver, proceedToCheckOutBtn);
+			Action.click(driver, proceedToCheckOutBtn);
 			return new PaymentPage();
 		}
 	

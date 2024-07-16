@@ -12,7 +12,7 @@ import com.mystore.base.BaseClass;
 import com.mystore.pageobjects.IndexPage;
 
 /**
- * Created by Sharu on 13th Jul'24
+ * Created by Sharu on 15th Jul'24
  */
 public class IndexPageTest extends BaseClass{
 	IndexPage indexPage;

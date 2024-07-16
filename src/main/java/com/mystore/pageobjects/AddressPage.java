@@ -15,7 +15,6 @@ import com.mystore.base.BaseClass;
  */
 public class AddressPage extends BaseClass {
 	
-	Action action= new Action();
 	
 	@FindBy(xpath="//span[text()='Proceed to checkout']")
 	WebElement proceedToCheckOut;
@@ -26,7 +25,7 @@ public class AddressPage extends BaseClass {
 		PageFactory.initElements(driver, this);
 	}
 	public ShippingPage clickOnCheckOut() {
-		action.click(driver, proceedToCheckOut);
+		Action.click(driver, proceedToCheckOut);
 		return new ShippingPage();
 	}
 	

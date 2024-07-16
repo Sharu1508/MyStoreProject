@@ -15,8 +15,6 @@ import com.mystore.base.BaseClass;
  */
 public class OrderPage extends BaseClass{
 	
-	
-	Action action = new Action();
 	@FindBy(xpath="//td[@class='cart_unit']/span/span")
 	WebElement unitPrice;
 	
@@ -46,14 +44,8 @@ public class OrderPage extends BaseClass{
 	}
 				
 	public LoginPage clickOnCheckOut() throws Throwable{
-		action.click(driver, proceedToCheckOut);
+		Action.click(driver, proceedToCheckOut);
 		return new LoginPage();
 	}
-	
-	
-	
-	
-	
-	
-	
+		
 }

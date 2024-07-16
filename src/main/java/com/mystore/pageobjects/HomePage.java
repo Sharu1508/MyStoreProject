@@ -14,7 +14,6 @@ import com.mystore.base.BaseClass;
  * Created by Sharu on 9th Jul2024
  */
 public class HomePage extends BaseClass {
-	Action action = new Action();
 	
 	@FindBy(xpath="//span[text()='My wishlists']")
 	WebElement myWishList;
@@ -27,10 +26,10 @@ public class HomePage extends BaseClass {
 	}
 	
 	public boolean validateMyWishList() throws Throwable {
-		return action.isDisplayed(driver, myWishList);
+		return Action.isDisplayed(driver, myWishList);
 		
 	}
 	public void validateOrderHistory() {
-		action.isDisplayed(driver, orderHistory);
+		Action.isDisplayed(driver, orderHistory);
 	}
 }

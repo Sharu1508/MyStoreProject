@@ -15,6 +15,7 @@ public class IndexPage extends BaseClass {
 	WebElement signInBtn;
 	
 	@FindBy(xpath="img[@class='logo img-responsive']")
+	//@FindBy(xpath="//*[@id='header_logo']/a/img/")
 	WebElement myStoreLogo;
 	
 	@FindBy(id="search_query_top")

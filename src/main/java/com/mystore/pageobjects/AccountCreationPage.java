@@ -15,8 +15,7 @@ import com.mystore.base.BaseClass;
  */
 public class AccountCreationPage extends BaseClass {
 	
-	Action action= new Action();
-	
+
 	@FindBy(xpath="//h1[text()='Create an account']")
 	WebElement formTitle;
 	
@@ -26,6 +25,6 @@ public class AccountCreationPage extends BaseClass {
 	}
 	
 	public void validateAccountCreatePage() throws Throwable {
-		action.isDisplayed(driver, formTitle);
+		Action.isDisplayed(driver, formTitle);
 	}
 }

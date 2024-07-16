@@ -15,7 +15,6 @@ import com.mystore.base.BaseClass;
  */
 public class LoginPage extends BaseClass {
 	
-	Action action=new Action();
 	@FindBy(id="email")
 	WebElement userName;
 	
@@ -38,22 +37,22 @@ public class LoginPage extends BaseClass {
 		
 	}
 	public HomePage login(String uname, String pswd) throws Throwable{
-		action.type(userName, uname);
-		action.type(password, pswd);
-		action.click(driver, SignInBtn);
+		Action.type(userName, uname);
+		Action.type(password, pswd);
+		Action.click(driver, SignInBtn);
 		return new HomePage();
 	}
 	
 	public AddressPage login1(String uname, String pswd) throws Throwable{
-		action.type(userName, uname);
-		action.type(password, pswd);
-		action.click(driver, SignInBtn);
+		Action.type(userName, uname);
+		Action.type(password, pswd);
+		Action.click(driver, SignInBtn);
 		return new AddressPage();
 	}
 	
 	
 	public AccountCreationPage createNewAccount(String newEmail) throws Throwable {
-		action.type(emailForNewAccount, newEmail);
+		Action.type(emailForNewAccount, newEmail);
 		return new AccountCreationPage();
 	}
 	

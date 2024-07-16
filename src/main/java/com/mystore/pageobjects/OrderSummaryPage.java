@@ -15,7 +15,6 @@ import com.mystore.base.BaseClass;
  */
 public class OrderSummaryPage extends BaseClass{
 	
-	Action action= new Action();
 	
 	@FindBy(xpath="//span[contains(text(),'I confirm my order')]")
 	WebElement confirmOrderBtn;
@@ -27,7 +26,7 @@ public class OrderSummaryPage extends BaseClass{
 	
 	public OrderConfirmationPage clickOnconfirmOrderBtn()throws Throwable {
 		
-		action.click(driver, confirmOrderBtn);
+		Action.click(driver, confirmOrderBtn);
 		return new OrderConfirmationPage();
 		
 	}

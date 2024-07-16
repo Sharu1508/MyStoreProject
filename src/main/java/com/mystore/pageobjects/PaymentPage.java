@@ -15,8 +15,6 @@ import com.mystore.base.BaseClass;
  * Created by Sharu on 12th Jul2024
  */
 public class PaymentPage extends BaseClass{
-	
-	Action action= new Action();
 		
 	@FindBy(xpath="//a[contains(text(),'Pay by bank wire')]")
 	WebElement bankWireMethod;
@@ -31,7 +29,7 @@ public class PaymentPage extends BaseClass{
 	}
 	
 	public OrderSummaryPage clickOnPaymentMethod() {
-			action.click(driver, bankWireMethod);
+			Action.click(driver, bankWireMethod);
 			return new OrderSummaryPage();
 	}
 	
