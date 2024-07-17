@@ -6,17 +6,23 @@ package com.mystore.testcases;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.mystore.base.BaseClass;
+import com.mystore.pageobjects.AccountCreationPage;
+import com.mystore.pageobjects.HomePage;
 import com.mystore.pageobjects.IndexPage;
+import com.mystore.pageobjects.LoginPage;
 
 /**
- * Created by Sharu on 15th Jul'24
+ * Created by Sharu on 17th Jul'24
  */
-public class IndexPageTest extends BaseClass{
+public class AccountCreationPageTest extends BaseClass{
+	
 	IndexPage indexPage;
+	LoginPage loginPage;
+	HomePage homePage;
+	AccountCreationPage accountCreationPage;
 	
 	@BeforeMethod
 	public void setup() {
@@ -36,20 +42,15 @@ public class IndexPageTest extends BaseClass{
             System.out.println("Browser closed.");
         }
     }
-	
-	@Test
-	public void verifyLogo() throws Throwable{
-		indexPage = new IndexPage();
-		boolean result=indexPage.ValidateLogo();
-		Assert.assertTrue(result);
-	}
-	
-	@Test
-	public void verifyTitle() throws Throwable{
-		String actTitle=indexPage.getMyStoreTitle();
-		System.out.println("The actual title is: "+actTitle);
-		Assert.assertEquals(actTitle, "My Shop");
-	
-	}
-	
+    
+    @Test
+    public void verifyCreateAccountpageTest() throws Throwable {
+    	
+    	indexPage= new IndexPage();
+    	loginPage=indexPage.clickOnSignIn();
+    	accountCreationPage=loginPage.createNewAccount("ahhhshshhh@gmail.com");
+    	boolean result = accountCreationPage.validateAccountCreatePage();
+    	Assert.assertTrue(result);
+    	
+    }
 }

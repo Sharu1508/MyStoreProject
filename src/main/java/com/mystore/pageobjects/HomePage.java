@@ -29,7 +29,12 @@ public class HomePage extends BaseClass {
 		return Action.isDisplayed(driver, myWishList);
 		
 	}
-	public void validateOrderHistory() {
-		Action.isDisplayed(driver, orderHistory);
+	public boolean validateOrderHistory() {
+		return Action.isDisplayed(driver, orderHistory);
+	}
+	
+	public String getCurrURL() {
+		String homePageURL = driver.getCurrentUrl();
+		return homePageURL;
 	}
 }

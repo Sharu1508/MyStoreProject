@@ -6,17 +6,21 @@ package com.mystore.testcases;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.mystore.base.BaseClass;
+import com.mystore.pageobjects.AddToCartPage;
 import com.mystore.pageobjects.IndexPage;
+import com.mystore.pageobjects.SearchResultPage;
 
 /**
- * Created by Sharu on 15th Jul'24
+ * Created by Sharu on 17th Jul'24
  */
-public class IndexPageTest extends BaseClass{
+public class AddToCartPageTest extends BaseClass {
+	
 	IndexPage indexPage;
+	SearchResultPage searchResultPage;
+	AddToCartPage addToCartPage;
 	
 	@BeforeMethod
 	public void setup() {
@@ -29,6 +33,7 @@ public class IndexPageTest extends BaseClass{
 			Assert.fail("Setup failed: " + e.getMessage());
 		}
 	}
+	
     @AfterMethod
     public void tearDown() {
         if (driver != null) {
@@ -36,20 +41,17 @@ public class IndexPageTest extends BaseClass{
             System.out.println("Browser closed.");
         }
     }
-	
-	@Test
-	public void verifyLogo() throws Throwable{
-		indexPage = new IndexPage();
-		boolean result=indexPage.ValidateLogo();
-		Assert.assertTrue(result);
-	}
-	
-	@Test
-	public void verifyTitle() throws Throwable{
-		String actTitle=indexPage.getMyStoreTitle();
-		System.out.println("The actual title is: "+actTitle);
-		Assert.assertEquals(actTitle, "My Shop");
-	
-	}
-	
+
+    @Test
+    public void addToCartTest() throws Throwable {
+    	indexPage= new IndexPage();
+    	searchResultPage = indexPage.searchProduct("Blouse");
+    	addToCartPage= searchResultPage.clickOnProduct();
+    	addToCartPage.eneterQuantity("1");
+    	addToCartPage.selectSize("S");
+    	addToCartPage.clickOnAddToCart();
+    	boolean result = addToCartPage.validateAddToCart();
+    	Assert.assertTrue(result);
+ 	
+    }
 }

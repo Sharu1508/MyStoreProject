@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 import com.mystore.actiondriver.Action;
@@ -20,8 +21,7 @@ public class BaseClass {
 	public static Properties prop;
 	public static WebDriver driver;
 	
-	
-	@BeforeTest
+	@BeforeMethod
 	public void loadConfig() {
 		 try {
 	            prop = new Properties();
@@ -66,7 +66,4 @@ public class BaseClass {
 	            throw new RuntimeException("Failed to launch application: " + e.getMessage());
 	        }
 	    }
-
-	
-
 }

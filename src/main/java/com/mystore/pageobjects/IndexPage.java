@@ -14,7 +14,7 @@ public class IndexPage extends BaseClass {
 	@FindBy(xpath="//a[@class='login']")
 	WebElement signInBtn;
 	
-	@FindBy(xpath="img[@class='logo img-responsive']")
+	@FindBy(xpath="//img[@class='logo img-responsive']")
 	//@FindBy(xpath="//*[@id='header_logo']/a/img/")
 	WebElement myStoreLogo;
 	
@@ -29,9 +29,9 @@ public class IndexPage extends BaseClass {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public LoginPage clickOnSignIn()
+	public LoginPage clickOnSignIn() throws Throwable
 	{
-		
+		Action.fluentWait(driver, signInBtn, 10);
 		Action.click(driver, signInBtn);
 		return new LoginPage();
 	}

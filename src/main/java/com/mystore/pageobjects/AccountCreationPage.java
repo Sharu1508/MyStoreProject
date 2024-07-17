@@ -24,7 +24,7 @@ public class AccountCreationPage extends BaseClass {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void validateAccountCreatePage() throws Throwable {
-		Action.isDisplayed(driver, formTitle);
+	public boolean validateAccountCreatePage() throws Throwable {
+		return Action.isDisplayed(driver, formTitle);
 	}
 }
