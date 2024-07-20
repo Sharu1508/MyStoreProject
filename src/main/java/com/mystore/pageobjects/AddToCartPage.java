@@ -27,7 +27,8 @@ public class AddToCartPage extends BaseClass {
 	@FindBy(xpath="//*[@id=\"layer_cart\"]//h2/i")
 	WebElement addToCartMessage;
 	
-	@FindBy(xpath="//span[contains(text()='Proceed to checkout']")
+	//@FindBy(xpath="//span[contains(text()='Proceed to checkout']")
+	@FindBy(css = "a.btn.btn-default.button.button-medium[title='Proceed to checkout']")
 	WebElement proceedToCheckOutBtn;
 
 	
@@ -52,6 +53,7 @@ public class AddToCartPage extends BaseClass {
 	}
 	
 	public OrderPage clickOnCheckout() throws Throwable {
+		Action.fluentWait(driver, proceedToCheckOutBtn, 10);
 		Action.JSClick(driver, proceedToCheckOutBtn);
 		return new OrderPage();
 	}

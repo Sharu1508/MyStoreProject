@@ -6,6 +6,7 @@ package com.mystore.testcases;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import com.mystore.base.BaseClass;
 import com.mystore.pageobjects.AddToCartPage;
@@ -42,19 +43,21 @@ public class OrderPageTest extends BaseClass {
             System.out.println("Browser closed.");
         }
     }
+    @Test
     public void verifyTotalPrice() throws Throwable {
     	indexPage= new IndexPage();
     	
-    	searchResultPage = indexPage.searchProduct("Blouse");
+    	searchResultPage = indexPage.searchProduct("dress");
     	addToCartPage= searchResultPage.clickOnProduct();
     	addToCartPage.eneterQuantity("1");
-    	addToCartPage.selectSize("S");
+    	addToCartPage.selectSize("M");
     	addToCartPage.clickOnAddToCart();
     	addToCartPage.clickOnCheckout();
-    	boolean result = addToCartPage.validateAddToCart();
-    	Assert.assertTrue(result);
- 	
+    	Double unitPrice=orderPage.getUnitPrice();
+    	Double totalPrice= orderPage.getTotalPrice();
+    	Double totalExpectedPrice=(unitPrice*2)+2;
+    	Assert.assertEquals(totalPrice, totalExpectedPrice);
+    	 	
     }
-
 
 }

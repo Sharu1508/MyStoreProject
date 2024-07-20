@@ -45,10 +45,10 @@ public class AddToCartPageTest extends BaseClass {
     @Test
     public void addToCartTest() throws Throwable {
     	indexPage= new IndexPage();
-    	searchResultPage = indexPage.searchProduct("Blouse");
+    	searchResultPage = indexPage.searchProduct("dress");
     	addToCartPage= searchResultPage.clickOnProduct();
     	addToCartPage.eneterQuantity("1");
-    	addToCartPage.selectSize("S");
+    	addToCartPage.selectSize("M");
     	addToCartPage.clickOnAddToCart();
     	boolean result = addToCartPage.validateAddToCart();
     	Assert.assertTrue(result);

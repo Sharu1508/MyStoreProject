@@ -15,7 +15,8 @@ import com.mystore.base.BaseClass;
  */
 public class SearchResultPage extends BaseClass {
 
-	@FindBy(xpath="//*[@id=\"center_column\"]//img")
+	//@FindBy(xpath="//*[@id=\"center_column\"]//img")
+	@FindBy(xpath="//img[@class='replace-2x img-responsive']")
 	WebElement productResult;
 	
 	

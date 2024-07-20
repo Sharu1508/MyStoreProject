@@ -5,11 +5,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
 import com.mystore.actiondriver.Action;
@@ -20,6 +22,11 @@ public class BaseClass {
 	
 	public static Properties prop;
 	public static WebDriver driver;
+	
+	@BeforeSuite
+	public void beforeSuite() {
+		DOMConfigurator.configure("log4j.xml");
+	}
 	
 	@BeforeMethod
 	public void loadConfig() {
@@ -55,10 +62,13 @@ public class BaseClass {
 	                throw new RuntimeException("Unsupported browser: " + browserName);
 	            }
 
+	         // Maximize the browser window
+	            driver.manage().window().maximize();
+	            System.out.println("Browser launched and maximized: " + browserName);
 	            System.out.println("Browser launched: " + browserName);
 
 	            Action.implicitWait(driver, 10);
-	            Action.pageLoadTimeOut(driver, 10);
+	            Action.pageLoadTimeOut(driver, 30);
 	            driver.get(prop.getProperty("url"));
 	            System.out.println("Navigated to URL: " + prop.getProperty("url"));
 	        } catch (Exception e) {
