@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.mystore.base.BaseClass;
@@ -18,18 +19,19 @@ import com.mystore.pageobjects.IndexPage;
 public class IndexPageTest extends BaseClass{
 	IndexPage indexPage;
 	
-	@BeforeMethod
-	public void setup() {
+	@Parameters("browser")
+	@BeforeMethod(groups = {"Smoke" , "Sanity" , "Regression"})
+	public void setup(String browser) {
 		try {
 			System.out.println("Launching application...");
-			launchApp();
+			launchApp(browser);
 			System.out.println("Application launched successfully.");
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("Setup failed: " + e.getMessage());
 		}
 	}
-    @AfterMethod
+    @AfterMethod(groups = {"Smoke" , "Sanity" , "Regression"})
     public void tearDown() {
         if (driver != null) {
             driver.quit();
@@ -37,14 +39,14 @@ public class IndexPageTest extends BaseClass{
         }
     }
 	
-	@Test
+	@Test(groups="Smoke")
 	public void verifyLogo() throws Throwable{
 		indexPage = new IndexPage();
 		boolean result=indexPage.ValidateLogo();
 		Assert.assertTrue(result);
 	}
 	
-	@Test
+	@Test(groups="Smoke")
 	public void verifyTitle() throws Throwable{
 		String actTitle=indexPage.getMyStoreTitle();
 		System.out.println("The actual title is: "+actTitle);

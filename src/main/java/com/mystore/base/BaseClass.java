@@ -13,6 +13,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import com.mystore.actiondriver.Action;
 
@@ -23,7 +24,7 @@ public class BaseClass {
 	public static Properties prop;
 	public static WebDriver driver;
 	
-	@BeforeSuite
+	@BeforeSuite(groups= {"smoke" , "Sanity" , "Regression"})
 	public void beforeSuite() {
 		DOMConfigurator.configure("log4j.xml");
 	}
@@ -46,12 +47,12 @@ public class BaseClass {
 	        }
 	}
 	
-	public static void launchApp() {
+
+	public static void launchApp(String browserName) {
 		
-			
 		 try {
 	            WebDriverManager.chromedriver().setup();
-	            String browserName = prop.getProperty("browser");
+	            //browserName = prop.getProperty("browser");
 	            if (browserName.equalsIgnoreCase("chrome")) {
 	                driver = new ChromeDriver();
 	            } else if (browserName.equalsIgnoreCase("firefox")) {
@@ -66,10 +67,9 @@ public class BaseClass {
 	            driver.manage().window().maximize();
 	            System.out.println("Browser launched and maximized: " + browserName);
 	            System.out.println("Browser launched: " + browserName);
-
-	            Action.implicitWait(driver, 10);
-	            Action.pageLoadTimeOut(driver, 30);
 	            driver.get(prop.getProperty("url"));
+	            Action.implicitWait(driver, 10);
+	            Action.pageLoadTimeOut(driver, 10);
 	            System.out.println("Navigated to URL: " + prop.getProperty("url"));
 	        } catch (Exception e) {
 	            e.printStackTrace();

@@ -1,4 +1,4 @@
-/**
+	/**
  * 
  */
 package com.mystore.testcases;
@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.mystore.base.BaseClass;
@@ -25,18 +26,19 @@ public class LoginPageTest extends BaseClass{
 	LoginPage loginPage;
 	HomePage homePage;
 	
-	@BeforeMethod
-	public void setup() {
+	@Parameters("browser")
+	@BeforeMethod(groups = {"Smoke" , "Sanity" , "Regression"})
+	public void setup(String browser) {
 		try {
 			System.out.println("Launching application...");
-			launchApp();
+			launchApp(browser);
 			System.out.println("Application launched successfully.");
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("Setup failed: " + e.getMessage());
 		}
 	}
-    @AfterMethod
+    @AfterMethod(groups = {"Smoke" , "Sanity" , "Regression"})
     public void tearDown() {
         if (driver != null) {
             driver.quit();
@@ -44,7 +46,7 @@ public class LoginPageTest extends BaseClass{
         }
     }
 	
-    @Test(dataProvider = "credentials", dataProviderClass = DataProviders.class)
+    @Test(dataProvider = "credentials", dataProviderClass = DataProviders.class, groups = {"Smoke","Sanity"})
     public void loginTest(String uname, String pswd) throws Throwable {
     	Log.startTestCase("loginTest");
     	indexPage =  new IndexPage();

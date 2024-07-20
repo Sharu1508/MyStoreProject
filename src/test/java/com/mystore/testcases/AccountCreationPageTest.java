@@ -6,6 +6,8 @@ package com.mystore.testcases;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.mystore.base.BaseClass;
@@ -24,18 +26,19 @@ public class AccountCreationPageTest extends BaseClass{
 	HomePage homePage;
 	AccountCreationPage accountCreationPage;
 	
-	@BeforeMethod
-	public void setup() {
+	@Parameters("browser")
+	@BeforeMethod(groups = {"Smoke" , "Sanity" , "Regression"})
+	public void setup(String browser) {
 		try {
 			System.out.println("Launching application...");
-			launchApp();
+			launchApp(browser);
 			System.out.println("Application launched successfully.");
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("Setup failed: " + e.getMessage());
 		}
 	}
-    @AfterMethod
+    @AfterMethod(groups = {"Smoke" , "Sanity" , "Regression"})
     public void tearDown() {
         if (driver != null) {
             driver.quit();
@@ -43,7 +46,7 @@ public class AccountCreationPageTest extends BaseClass{
         }
     }
     
-    @Test
+    @Test(groups = "Sanity")
     public void verifyCreateAccountpageTest() throws Throwable {
     	
     	indexPage= new IndexPage();

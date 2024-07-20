@@ -10,20 +10,16 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.mystore.base.BaseClass;
-import com.mystore.pageobjects.AddToCartPage;
 import com.mystore.pageobjects.IndexPage;
-import com.mystore.pageobjects.OrderPage;
 import com.mystore.pageobjects.SearchResultPage;
 
 /**
  * Created by Sharu on 17th Jul'24
  */
-public class OrderPageTest extends BaseClass {
+public class SearchResultPageTest extends BaseClass {
 	
 	IndexPage indexPage;
 	SearchResultPage searchResultPage;
-	AddToCartPage addToCartPage;
-	OrderPage orderPage;
 	
 	@Parameters("browser")
 	@BeforeMethod(groups = {"Smoke" , "Sanity" , "Regression"})
@@ -37,7 +33,6 @@ public class OrderPageTest extends BaseClass {
 			Assert.fail("Setup failed: " + e.getMessage());
 		}
 	}
-	
     @AfterMethod(groups = {"Smoke" , "Sanity" , "Regression"})
     public void tearDown() {
         if (driver != null) {
@@ -45,21 +40,13 @@ public class OrderPageTest extends BaseClass {
             System.out.println("Browser closed.");
         }
     }
-    @Test(groups = "Regression")
-    public void verifyTotalPrice() throws Throwable {
-    	indexPage= new IndexPage();
-    	
-    	searchResultPage = indexPage.searchProduct("dress");
-    	addToCartPage= searchResultPage.clickOnProduct();
-    	addToCartPage.eneterQuantity("1");
-    	addToCartPage.selectSize("M");
-    	addToCartPage.clickOnAddToCart();
-    	addToCartPage.clickOnCheckout();
-    	Double unitPrice=orderPage.getUnitPrice();
-    	Double totalPrice= orderPage.getTotalPrice();
-    	Double totalExpectedPrice=(unitPrice*2)+2;
-    	Assert.assertEquals(totalPrice, totalExpectedPrice);
-    	 	
-    }
 
+    @Test(groups = "smoke")
+    public void productAvailabilityTest() throws Throwable {
+    	indexPage= new IndexPage();
+    	searchResultPage = indexPage.searchProduct("dress");
+    	boolean result =  searchResultPage.isProductAvailable();
+    	Assert.assertTrue(result);
+ 	
+    }
 }
