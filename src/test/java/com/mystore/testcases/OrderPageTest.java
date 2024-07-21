@@ -41,7 +41,7 @@ public class OrderPageTest extends BaseClass {
     @AfterMethod(groups = {"Smoke" , "Sanity" , "Regression"})
     public void tearDown() {
         if (driver != null) {
-            driver.quit();
+        	getDriver().quit();
             System.out.println("Browser closed.");
         }
     }

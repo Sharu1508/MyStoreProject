@@ -26,30 +26,30 @@ public class IndexPage extends BaseClass {
 	
 	public IndexPage()
 	{
-		PageFactory.initElements(driver, this);
+		PageFactory.initElements(getDriver(), this);
 	}
 	
 	public LoginPage clickOnSignIn() throws Throwable
 	{
-		Action.fluentWait(driver, signInBtn, 10);
-		Action.click(driver, signInBtn);
+		Action.fluentWait(getDriver(), signInBtn, 10);
+		Action.click(getDriver(), signInBtn);
 		return new LoginPage();
 	}
 	
 	public boolean ValidateLogo() {
 		
-		return Action.isDisplayed(driver, myStoreLogo);
+		return Action.isDisplayed(getDriver(), myStoreLogo);
 		
 	}
 	
 	public String getMyStoreTitle() {
-		String myStoreTitle1=driver.getTitle();
+		String myStoreTitle1=getDriver().getTitle();
 		return myStoreTitle1;
 	}
 	
 	public SearchResultPage searchProduct(String productName) throws Throwable {
 		Action.type(searchProductBox, productName);
-		Action.click(driver, searchButton);
+		Action.click(getDriver(), searchButton);
 		return new SearchResultPage();
 	}
 	

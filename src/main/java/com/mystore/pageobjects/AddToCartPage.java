@@ -33,7 +33,7 @@ public class AddToCartPage extends BaseClass {
 
 	
 	public AddToCartPage() {
-		PageFactory.initElements(driver, this);
+		PageFactory.initElements(getDriver(), this);
 	}
 	
 	public void eneterQuantity(String quantity1) throws Throwable {
@@ -44,17 +44,17 @@ public class AddToCartPage extends BaseClass {
 	}
 	
 	public void clickOnAddToCart() throws Throwable{
-		Action.click(driver, addToCartBtn);
+		Action.click(getDriver(), addToCartBtn);
 	}
 
 	public boolean validateAddToCart() throws Throwable{
-		Action.fluentWait(driver, addToCartMessage, 10);
-		return Action.isDisplayed(driver, addToCartMessage);
+		Action.fluentWait(getDriver(), addToCartMessage, 10);
+		return Action.isDisplayed(getDriver(), addToCartMessage);
 	}
 	
 	public OrderPage clickOnCheckout() throws Throwable {
-		Action.fluentWait(driver, proceedToCheckOutBtn, 10);
-		Action.JSClick(driver, proceedToCheckOutBtn);
+		Action.fluentWait(getDriver(), proceedToCheckOutBtn, 10);
+		Action.JSClick(getDriver(), proceedToCheckOutBtn);
 		return new OrderPage();
 	}
 }

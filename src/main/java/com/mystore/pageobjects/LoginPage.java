@@ -33,27 +33,27 @@ public class LoginPage extends BaseClass {
 	
 	public LoginPage()
 	{
-		PageFactory.initElements(driver, this);
+		PageFactory.initElements(getDriver(), this);
 		
 	}
 	public HomePage login(String uname, String pswd) throws Throwable{
 		Action.type(userName, uname);
 		Action.type(password, pswd);
-		Action.click(driver, SignInBtn);
+		Action.click(getDriver(), SignInBtn);
 		return new HomePage();
 	}
 	
 	public AddressPage login1(String uname, String pswd) throws Throwable{
 		Action.type(userName, uname);
 		Action.type(password, pswd);
-		Action.click(driver, SignInBtn);
+		Action.click(getDriver(), SignInBtn);
 		return new AddressPage();
 	}
 	
 	
 	public AccountCreationPage createNewAccount(String newEmail) throws Throwable {
 		Action.type(emailForNewAccount, newEmail);
-		Action.click(driver, createNewAccountBtn);
+		Action.click(getDriver(), createNewAccountBtn);
 		return new AccountCreationPage();
 	}
 	
